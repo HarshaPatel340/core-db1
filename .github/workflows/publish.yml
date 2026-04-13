@@ -22,14 +22,32 @@ jobs:
 
       - run: npm install
 
-      - name: Publish with correct tag
+      - name: Set package name and version per branch
         run: |
           if [ "${{ github.ref_name }}" = "main" ]; then
-            npm publish --tag latest
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('package.json'));
+              pkg.name = '@Harshapatel340/core-db1-latest';
+              fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+            "
           elif [ "${{ github.ref_name }}" = "staging" ]; then
-            npm publish --tag staging
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('package.json'));
+              pkg.name = '@Harshapatel340/core-db1-staging';
+              fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+            "
           elif [ "${{ github.ref_name }}" = "dev" ]; then
-            npm publish --tag dev
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('package.json'));
+              pkg.name = '@Harshapatel340/core-db1-dev';
+              fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+            "
           fi
+
+      - name: Publish package
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
