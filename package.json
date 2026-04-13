@@ -1,6 +1,6 @@
 {
   "name": "@Harshapatel340/core-db1",
-  "version": "1.0.0-staging.1",
+  "version": "1.0.0-dev.1",
   "description": "Shared DB layer for microservices",
   "main": "index.js",
   "scripts": {
