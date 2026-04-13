@@ -1,0 +1,25 @@
+{
+  "name": "@Harshapatel340/core-db1",
+  "version": "1.0.0",
+  "description": "Shared DB layer for microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshaPatel340/core-db1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HarshaPatel340/core-db1/issues"
+  },
+  "homepage": "https://github.com/HarshaPatel340/core-db1#readme"
+}

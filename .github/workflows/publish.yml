@@ -1,0 +1,35 @@
+name: Publish core-db1
+
+on:
+  push:
+    branches:
+      - dev
+      - staging
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@Harshapatel340'
+
+      - run: npm install
+
+      - name: Publish with correct tag
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            npm publish --tag latest
+          elif [ "${{ github.ref_name }}" = "staging" ]; then
+            npm publish --tag staging
+          elif [ "${{ github.ref_name }}" = "dev" ]; then
+            npm publish --tag dev
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
